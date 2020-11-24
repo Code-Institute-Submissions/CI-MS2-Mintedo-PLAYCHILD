@@ -10,12 +10,23 @@ body {
     background-color: #fafafa;
 }
 
+#console {
+    display: flex;
+    justify-content: center;
+    margin-top: 20rem;
+}
+
 svg {
     position: absolute;
-    top: 20rem;
-    left: 50%;
-    transform: translateX(-50%);
     z-index: -1;
+    transform: translateX(-.25rem);
+}
+
+#gameScene {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8rem;
 }
 
 /* Animations */
