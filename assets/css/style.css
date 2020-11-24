@@ -1,0 +1,30 @@
+/* General */
+* {
+    font-size: 10px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Animations */
+#d-pad, #A-button, #B-button, #select-button,#start-button, #screen {
+    animation: d-pad 2s linear;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+@keyframes d-pad{
+    from {
+        transform: rotateZ(0deg);
+    }
+    to {
+        transform: rotateZ(360deg);
+    }
+}
