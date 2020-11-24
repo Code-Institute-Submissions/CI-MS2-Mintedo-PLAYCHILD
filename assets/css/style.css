@@ -6,15 +6,20 @@
     box-sizing: border-box;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+body {
+    background-color: #fafafa;
+}
+
+svg {
+    position: absolute;
+    top: 20rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
 }
 
 /* Animations */
-#d-pad, #A-button, #B-button, #select-button,#start-button, #screen {
+/* #d-pad, #A-button, #B-button, #select-button,#start-button, #screen {
     animation: d-pad 2s linear;
     transform-origin: center;
     transform-box: fill-box;
@@ -27,4 +32,4 @@
     to {
         transform: rotateZ(360deg);
     }
-}
+} */
