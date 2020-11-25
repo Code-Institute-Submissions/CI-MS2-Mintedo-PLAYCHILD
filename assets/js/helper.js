@@ -1,34 +1,37 @@
 $(document).ready(function() {
-    function animate(key) {
+    //D-Pad Animation
+    const innerDPad = $("#inner-d-pad")
+
+    function animateDPad(key) {
         if (key === 'ArrowLeft') {
-            $("#inner-d-pad").removeClass().addClass('d-pad-left-animation'); 
+            $(innerDPad).removeClass().addClass('d-pad-left-animation'); 
         } else if (key === 'ArrowRight') {
-            $("#inner-d-pad").removeClass().addClass('d-pad-right-animation');
+            $(innerDPad).removeClass().addClass('d-pad-right-animation');
         } else if (key === 'ArrowUp') {
-            $("#inner-d-pad").removeClass().addClass('d-pad-up-animation');
+            $(innerDPad).removeClass().addClass('d-pad-up-animation');
         } else if (key === 'ArrowDown') {
-            $("#inner-d-pad").removeClass().addClass('d-pad-down-animation');
+            $(innerDPad).removeClass().addClass('d-pad-down-animation');
         }
     }
     
     function removeAnimation(key) {
-        $("#inner-d-pad").removeClass('d-pad-left-animation d-pad-right-animation');
+        $(innerDPad).removeClass('d-pad-left-animation d-pad-right-animation');
     }
     
-    function animateOnKeyPress(e) {
+    function callAnimateOnKeyPress(e) {
         if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-             animate(e.key);
+             animateDPad(e.key);
         } else {
             removeAnimation();
         }
     }
     
-    function resetOnKeyUp() {
-        $("#inner-d-pad").removeClass()
+    function resetDPadOnKeyUp(e) {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+            $(innerDPad).removeClass();
+        }
     }
     
-    
-    
-    $(document).keydown(animateOnKeyPress);
-    $(document).keyup(resetOnKeyUp);
+    $(document).keydown(callAnimateOnKeyPress);
+    $(document).keyup(resetDPadOnKeyUp);
 })
