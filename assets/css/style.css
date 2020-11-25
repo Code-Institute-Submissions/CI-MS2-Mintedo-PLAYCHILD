@@ -30,17 +30,17 @@ svg {
 }
 
 /* Animations */
-/* #d-pad, #A-button, #B-button, #select-button,#start-button, #screen {
-    animation: d-pad 2s linear;
+.d-pad-left-animation {
+    animation: d-pad-left 2s ease-in-out;
     transform-origin: center;
     transform-box: fill-box;
 }
 
-@keyframes d-pad{
+@keyframes d-pad-left {
     from {
         transform: rotateZ(0deg);
     }
     to {
         transform: rotateZ(360deg);
     }
-} */
+}
