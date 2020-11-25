@@ -10,25 +10,8 @@ $(document).ready(function() {
                 gravity: { y: 200 }
             }
         },
-        scene: {
-            preload: preload,
-            create: create,
-            update: update
-        },
-        // scale: {
-        //     autoCenter: Phaser.Scale.CENTER_BOTH
-        // }
+        scene: [startScene, gameScene, endScene]
     };
     
     var game = new Phaser.Game(config);
-    
-    
-    function preload() {
-    }
-    
-    function create() {
-    }
-    
-    function update() {
-    }
 })
