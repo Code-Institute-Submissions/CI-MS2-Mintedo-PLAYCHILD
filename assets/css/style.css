@@ -99,3 +99,36 @@ svg {
         transform: translateY(.15rem);
     }
 }
+
+/* A/B Buttons */
+.a-b-button-animation {
+    animation: a-b-button .1s ease-in-out;
+    animation-fill-mode: forwards;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+@keyframes a-b-button {
+    from {
+        transform: translate(0);
+    }
+    to {
+        transform: translate(-.15rem, .15rem);
+    }
+}
+
+/* .visiblity-hidden {
+    animation: visibility-hidden-animation 0.1s ease-in-out;
+    animation-fill-mode: forwards;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+@keyframes visiblity-hidden-animation {
+    from {
+        visibility: visible;
+    }
+    to {
+        visibility: hidden;
+    }
+} */
