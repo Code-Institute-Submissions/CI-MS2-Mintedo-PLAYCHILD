@@ -1,4 +1,4 @@
-/* General */
+/* -------------------------------------------------General */
 * {
     font-size: 10px;
     margin: 0;
@@ -10,6 +10,7 @@ body {
     background-color: #fafafa;
 }
 
+/* -------------------------------------------------Console */
 #console {
     display: flex;
     justify-content: center;
@@ -22,6 +23,7 @@ svg {
     transform: translateX(-.25rem);
 }
 
+/* -------------------------------------------------Game Scene */
 #gameScene {
     display: flex;
     justify-content: center;
@@ -29,18 +31,71 @@ svg {
     margin-top: 8rem;
 }
 
-/* Animations */
+/* -------------------------------------------------Animations */
+/* D-Pad Left */
 .d-pad-left-animation {
-    animation: d-pad-left 2s ease-in-out;
+    animation: d-pad-left .1s ease-in-out;
+    animation-fill-mode: forwards;
     transform-origin: center;
     transform-box: fill-box;
 }
 
 @keyframes d-pad-left {
     from {
-        transform: rotateZ(0deg);
+        transform: translateX(0)
     }
     to {
-        transform: rotateZ(360deg);
+        transform: translateX(-.15rem);
+    }
+}
+
+/* D-Pad Right */
+.d-pad-right-animation {
+    animation: d-pad-right .1s ease-in-out;
+    animation-fill-mode: forwards;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+@keyframes d-pad-right {
+    from {
+        transform: translateX(0)
+    }
+    to {
+        transform: translateX(.15rem);
+    }
+}
+
+/* D-Pad Up */
+.d-pad-up-animation {
+    animation: d-pad-up .1s ease-in-out;
+    animation-fill-mode: forwards;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+@keyframes d-pad-up {
+    from {
+        transform: translateY(0)
+    }
+    to {
+        transform: translateY(-.15rem);
+    }
+}
+
+/* D-Pad Down */
+.d-pad-down-animation {
+    animation: d-pad-down .1s ease-in-out;
+    animation-fill-mode: forwards;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+@keyframes d-pad-down {
+    from {
+        transform: translateY(0)
+    }
+    to {
+        transform: translateY(.15rem);
     }
 }
