@@ -10,6 +10,10 @@ body {
     background-color: #fafafa;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 /* -------------------------------------------------Console */
 #console {
     display: flex;
@@ -116,19 +120,3 @@ svg {
         transform: translate(-.15rem, .15rem);
     }
 }
-
-/* .visiblity-hidden {
-    animation: visibility-hidden-animation 0.1s ease-in-out;
-    animation-fill-mode: forwards;
-    transform-origin: center;
-    transform-box: fill-box;
-}
-
-@keyframes visiblity-hidden-animation {
-    from {
-        visibility: visible;
-    }
-    to {
-        visibility: hidden;
-    }
-} */

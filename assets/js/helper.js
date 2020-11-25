@@ -64,7 +64,15 @@ $(document).ready(function () {
 
 
     //Select & Start Button Animation
-    
+
+
+    //Power LED On
+    const powerLEDImgOff = $('#power-led-off');
+    function turnPowerLEDOn () {
+        powerLEDImgOff.addClass("hidden");
+    }
+
+    setTimeout(turnPowerLEDOn, 1300);
 
     //Calling Listeners
     $(document).keydown(checkDownKey);
