@@ -52,7 +52,7 @@ class GameScene extends Phaser.Scene {
             scoreText.setText(`Earnings: \$${score}`);
             //Place snakes randomly
             randomCoord = assignCoords();
-            gameState.enemies.create(randomCoord.x, randomCoord.y, 'snake').setScale(.05);
+            gameState.enemies.create(randomCoord.x, randomCoord.y, 'snake').setScale(.02);
         });
 
         //Collision detection between player and snake
@@ -122,7 +122,7 @@ class GameScene extends Phaser.Scene {
           }
       
           function movePlayerLeft() {
-            gameState.player.flipX = true;
+            gameState.player.flipX = false;
             gameState.player.setTexture('player-left');
             gameState.player.setVelocityX(-150 * speed);
             gameState.player.setVelocityY(0);
