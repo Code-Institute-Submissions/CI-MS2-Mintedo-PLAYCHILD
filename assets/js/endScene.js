@@ -9,7 +9,7 @@ class EndScene extends Phaser.Scene {
     }
 
     create() {
-        screen = this.add.image('end', 0, 0).setOrigin(0).setScale(2);
+        screen = this.add.image(0, 0, 'end').setOrigin(0).setScale(1.8);
 
         // Resets score to 0 for next round
         score = 0;
