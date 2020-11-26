@@ -2,7 +2,7 @@ let score = 0;
 const moneyMultiplier = 100;
 const speed = .5;
 
-const gameState = {
+let gameState = {
     numCoordinates: {}
 };
 let randomCoord;
@@ -25,14 +25,15 @@ class GameScene extends Phaser.Scene {
         let scoreText = this.add.text(0, 0, `Treasure: $${score}`, { fontSize: '15px', fill: '#fff' });
 
         //Creating player sprite and setting boundaries
-        gameState.player = this.physics.add.sprite(50, 50, 'player-idle').setScale(1);
+        gameState.player = this.physics.add.sprite(50, 50, 'player-idle').setScale(1).refreshBody();
+        // console.log(gameState);
         this.physics.world.setBounds(0, 0, 168, 186);
         gameState.player.setCollideWorldBounds(true);
         gameState.player.body.collideWorldBounds = true;
 
         //Creating gems in random spots
         randomCoord = assignCoords();
-        gameState.gem = this.physics.add.sprite(randomCoord.x, randomCoord.y, 'gem').setScale(.0125);
+        gameState.gem = this.physics.add.sprite(randomCoord.x, randomCoord.y, 'gem').setScale(.0125).refreshBody();
 
         //Create snake sprite group
         gameState.enemies = this.physics.add.group();
@@ -52,7 +53,7 @@ class GameScene extends Phaser.Scene {
             scoreText.setText(`Earnings: \$${score}`);
             //Place snakes randomly
             randomCoord = assignCoords();
-            gameState.enemies.create(randomCoord.x, randomCoord.y, 'snake').setScale(.02);
+            gameState.enemies.create(randomCoord.x, randomCoord.y, 'snake').setScale(.02).refreshBody();
         });
 
         //Collision detection between player and snake
@@ -68,16 +69,16 @@ class GameScene extends Phaser.Scene {
         //Function that returns random coordinates (NOT gameState.numCoordinates)
         function assignCoords() {
             let assignedCoord = generateRandomCoords();
-      
+
             //Stop things being placed where there is already a game object
             while (gameState.numCoordinates[`x${assignedCoord.x}y${assignedCoord.y}`]) {
-              assignedCoord = generateRandomCoords()
+                assignedCoord = generateRandomCoords()
             }
-      
+
             gameState.numCoordinates[`x${assignedCoord.x}y${assignedCoord.y}`] = true
-      
+
             return assignedCoord;
-          }
+        }
     }
 
     update() {
@@ -88,63 +89,64 @@ class GameScene extends Phaser.Scene {
         const leftArrow = cursors.left.isDown;
         const upArrow = cursors.up.isDown;
         const downArrow = cursors.down.isDown;
+
         // If an arrow key is pressed, players moves
-        if (rightArrow) {
+        if (cursors.right.isDown) {
             movePlayerRight();
-        } else if (leftArrow) {
+            console.log('Right');    
+        } else if (cursors.left.isDown) {
             movePlayerLeft();
-        } else if (upArrow) {
+            console.log('Left');
+        } else if (cursors.up.isDown) {
             movePlayerUp();
-        } else if (downArrow) {
+            console.log('Up');
+        } else if (cursors.down.isDown) {
             movePlayerDown();
+            console.log('Down');
         }
 
         // Variables to store player coordinates
         const playerXCoord = gameState.player.x;
         const playerYCoord = gameState.player.y;
+        console.log(gameState.player.velocity)
 
         //Check player border collision
-        if (playerXCoord <= 32 || playerXCoord >= 448) {
-            this.endGame();
-        }
+        // if (playerXCoord <= 32 || playerXCoord >= 448) {
+        //     this.endGame();
+        // }
 
-        if (playerYCoord <= 32 || playerYCoord >= 568) {
-            this.endGame();
-        }
+        // if (playerYCoord <= 32 || playerYCoord >= 568) {
+        //     this.endGame();
+        // }
 
 
         //Move player in direction pressed
         function movePlayerRight() {
-            gameState.player.flipX = false;
             gameState.player.setTexture('player-right');
             gameState.player.setVelocityX(150 * speed);
             gameState.player.setVelocityY(0);
-          }
-      
-          function movePlayerLeft() {
-            gameState.player.flipX = false;
+        }
+
+        function movePlayerLeft() {
             gameState.player.setTexture('player-left');
             gameState.player.setVelocityX(-150 * speed);
             gameState.player.setVelocityY(0);
-          }
-      
-          function movePlayerUp() {
-            gameState.player.flipX = false;
+        }
+
+        function movePlayerUp() {
             gameState.player.setTexture('player-idle');
             gameState.player.setVelocityX(0);
             gameState.player.setVelocityY(-150 * speed);
-          }
-      
-          function movePlayerDown() {
-            gameState.player.flipX = false;
-            gameState.player.setTexture('player-idle');
+        }
+
+        function movePlayerDown() {
             gameState.player.setVelocityX(0);
             gameState.player.setVelocityY(150 * speed);
-          }
+        }
     }
 
     //A function that ends the game
-    endGame () {
+    endGame() {
         this.physics.pause();
         this.cameras.main.fade(800, 0, 0, 0, false, function (camera, progress) {
             if (progress > .5) {
