@@ -1,6 +1,6 @@
 let score = 0;
 const moneyMultiplier = 100;
-const speed = 1;
+const speed = .5;
 
 const gameState = {
     numCoordinates: {}
@@ -13,7 +13,9 @@ class GameScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('player', 'assets/images/idle.gif');
+        this.load.image('player-idle', 'assets/images/idle.gif');
+        this.load.image('player-left', 'assets/images/run-left.gif');
+        this.load.image('player-right', 'assets/images/run-right.gif');
         this.load.image('snake', 'assets/images/snake.png');
         this.load.image('gem', 'assets/images/gem.png');
     }
@@ -22,9 +24,9 @@ class GameScene extends Phaser.Scene {
         //Create and display score
         let scoreText = this.add.text(0, 0, `Treasure: $${score}`, { fontSize: '15px', fill: '#fff' });
 
-        //Creating sprite and setting boundaries
-        gameState.player = this.physics.add.sprite('player', 50, 50).setScale(.5);
-        this.physics.world.setBounds(0, 0, 480, 600);
+        //Creating player sprite and setting boundaries
+        gameState.player = this.physics.add.sprite(50, 50, 'player-idle').setScale(1);
+        this.physics.world.setBounds(0, 0, 168, 186);
         gameState.player.setCollideWorldBounds(true);
         gameState.player.body.collideWorldBounds = true;
 
@@ -114,28 +116,28 @@ class GameScene extends Phaser.Scene {
         //Move player in direction pressed
         function movePlayerRight() {
             gameState.player.flipX = false;
-            // gameState.player.setTexture('bob-side');
+            gameState.player.setTexture('player-right');
             gameState.player.setVelocityX(150 * speed);
             gameState.player.setVelocityY(0);
           }
       
           function movePlayerLeft() {
             gameState.player.flipX = true;
-            // gameState.player.setTexture('bob-side');
+            gameState.player.setTexture('player-left');
             gameState.player.setVelocityX(-150 * speed);
             gameState.player.setVelocityY(0);
           }
       
           function movePlayerUp() {
             gameState.player.flipX = false;
-            // gameState.player.setTexture('bob-back');
+            gameState.player.setTexture('player-idle');
             gameState.player.setVelocityX(0);
             gameState.player.setVelocityY(-150 * speed);
           }
       
           function movePlayerDown() {
             gameState.player.flipX = false;
-            // gameState.player.setTexture('bob-front');
+            gameState.player.setTexture('player-idle');
             gameState.player.setVelocityX(0);
             gameState.player.setVelocityY(150 * speed);
           }
