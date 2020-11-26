@@ -28,7 +28,7 @@ svg {
 }
 
 /* -------------------------------------------------Game Scene */
-#gameScene {
+#game-scene {
     display: flex;
     justify-content: center;
     align-items: center;

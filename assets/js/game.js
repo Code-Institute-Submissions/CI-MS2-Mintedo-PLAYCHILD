@@ -11,7 +11,7 @@ $(document).ready(function() {
                 enableBody: true
             }
         },
-        scene: [startScene, gameScene, endScene]
+        scene: [StartScene, GameScene, EndScene]
     };
     
     const game = new Phaser.Game(config);
