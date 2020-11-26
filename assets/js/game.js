@@ -2,6 +2,7 @@ $(document).ready(function() {
     const config = {
         height: 168,
         width: 186,
+        resolution: window.devicePixelRatio,
         type: Phaser.WEBGL.AUTO,
         parent: 'game-scene',
         physics: {

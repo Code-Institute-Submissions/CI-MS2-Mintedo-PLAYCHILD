@@ -13,24 +13,24 @@ class GameScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.spritesheet('player', 'assets/images/fella-spritesheet.png', { frameWidth: 32, frameHeight: 48 });
+        this.load.image('player', 'assets/images/idle.gif');
         this.load.image('snake', 'assets/images/snake.png');
         this.load.image('gem', 'assets/images/gem.png');
     }
 
     create() {
         //Create and display score
-        let scoreText = this.add.text(140, 610, `Treasure: $${score}`, { fontSize: '25px', fill: '#fff' });
+        let scoreText = this.add.text(0, 0, `Treasure: $${score}`, { fontSize: '15px', fill: '#fff' });
 
         //Creating sprite and setting boundaries
-        gameState.player = this.physics.add.sprite(240, 500, 'player').setScale(.8);
+        gameState.player = this.physics.add.sprite('player', 50, 50).setScale(.5);
         this.physics.world.setBounds(0, 0, 480, 600);
         gameState.player.setCollideWorldBounds(true);
-        gameState.player.body.collideWorldBounds(true);
+        gameState.player.body.collideWorldBounds = true;
 
         //Creating gems in random spots
         randomCoord = assignCoords();
-        gameState.gem = this.physics.add.sprite(randomCoord.x, randomCoord.y, 'gem').setScale(.5);
+        gameState.gem = this.physics.add.sprite(randomCoord.x, randomCoord.y, 'gem').setScale(.0125);
 
         //Create snake sprite group
         gameState.enemies = this.physics.add.group();
@@ -50,7 +50,7 @@ class GameScene extends Phaser.Scene {
             scoreText.setText(`Earnings: \$${score}`);
             //Place snakes randomly
             randomCoord = assignCoords();
-            gameState.enemies.create(randomCoord.x, randomCoord.y, 'snake').setScale(.6);
+            gameState.enemies.create(randomCoord.x, randomCoord.y, 'snake').setScale(.05);
         });
 
         //Collision detection between player and snake
@@ -58,25 +58,24 @@ class GameScene extends Phaser.Scene {
 
         //Generate random coorinates
         function generateRandomCoords() {
-            const randomX = Math.floor(Math.random() * 5) * 75 + 25;
-            const randomY = Math.floor(Math.random() * 5) * 75 + 25;
+            const randomX = Math.floor(Math.random() * 186);
+            const randomY = Math.floor(Math.random() * 168);
             return { x: randomX, y: randomY };
         }
 
         //Function that returns random coordinates (NOT gameState.numCoordinates)
         function assignCoords() {
-            let assignCoords = generateRandomCoords();
-
-
+            let assignedCoord = generateRandomCoords();
+      
             //Stop things being placed where there is already a game object
-            while (gameState.numCoordinates[`x${assignedCoords.x}y${assignedCoords.y}`]) {
-                assignedCoord = generateRandomCoords();
+            while (gameState.numCoordinates[`x${assignedCoord.x}y${assignedCoord.y}`]) {
+              assignedCoord = generateRandomCoords()
             }
-
-            gameState.numCoordinates[`x${assignedCoords.x}y${assignedCoords.y}`] = true;
-
+      
+            gameState.numCoordinates[`x${assignedCoord.x}y${assignedCoord.y}`] = true
+      
             return assignedCoord;
-        }
+          }
     }
 
     update() {
@@ -103,11 +102,11 @@ class GameScene extends Phaser.Scene {
         const playerYCoord = gameState.player.y;
 
         //Check player border collision
-        if (bobXCoord <= 32 || bobXCoord >= 448) {
+        if (playerXCoord <= 32 || playerXCoord >= 448) {
             this.endGame();
         }
 
-        if (bobYCoord <= 32 || bobYCoord >= 568) {
+        if (playerYCoord <= 32 || playerYCoord >= 568) {
             this.endGame();
         }
 
@@ -145,7 +144,7 @@ class GameScene extends Phaser.Scene {
     //A function that ends the game
     endGame () {
         this.physics.pause();
-        this.camera.main.fade(800, 0, 0, 0, false, function (camera, progress) {
+        this.cameras.main.fade(800, 0, 0, 0, false, function (camera, progress) {
             if (progress > .5) {
                 this.scene.stop('GameScene');
                 this.scene.start('EndScene');

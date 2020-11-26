@@ -5,11 +5,11 @@ class EndScene extends Phaser.Scene {
 
 
     preload() {
-        this.load.image('end', 'placeholder.jpg');
+        this.load.image('end', 'assets/images/end-image.png');
     }
 
     create() {
-        screen = this.addEventListener.image(0, 0, 0, 'end').setOrigin(0);
+        screen = this.add.image('end', 0, 0).setOrigin(0).setScale(2);
 
         // Resets score to 0 for next round
         score = 0;
