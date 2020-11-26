@@ -3,7 +3,7 @@ $(document).ready(function() {
         height: 168,
         width: 186,
         type: Phaser.WEBGL.AUTO,
-        parent: 'gameScene',
+        parent: 'game-scene',
         physics: {
             default: 'arcade',
             arcade: {
