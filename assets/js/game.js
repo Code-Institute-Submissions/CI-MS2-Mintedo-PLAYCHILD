@@ -7,11 +7,12 @@ $(document).ready(function() {
         physics: {
             default: 'arcade',
             arcade: {
-                gravity: { y: 200 }
+                gravity: 0,
+                enableBody: true
             }
         },
         scene: [startScene, gameScene, endScene]
     };
     
-    var game = new Phaser.Game(config);
+    const game = new Phaser.Game(config);
 })
