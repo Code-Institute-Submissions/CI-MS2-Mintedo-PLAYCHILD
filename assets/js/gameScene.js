@@ -31,7 +31,7 @@ class GameScene extends Phaser.Scene {
         //Creating player sprite and setting boundaries
         gameState.player = this.physics.add.sprite(50, 50, 'player-idle').setScale(1).refreshBody();
         // console.log(gameState);
-        this.physics.world.setBounds(0, 0, 168, 186);
+        this.physics.world.setBounds(0, 0, 186, 168);
         gameState.player.setCollideWorldBounds(true);
         gameState.player.body.collideWorldBounds = true;
 
