@@ -29,7 +29,7 @@ class GameScene extends Phaser.Scene {
         let scoreText = this.add.text(0, 0, `Treasure: $${score}`, { fontSize: '15px', fill: '#fff' });
 
         //Creating player sprite and setting boundaries
-        gameState.player = this.physics.add.sprite(50, 50, 'player-idle').setScale(1).refreshBody();
+        gameState.player = this.physics.add.sprite(50, 50, 'player-idle').setScale(.8).refreshBody();
         // console.log(gameState);
         this.physics.world.setBounds(0, 0, 186, 168);
         gameState.player.setCollideWorldBounds(true);
@@ -57,7 +57,7 @@ class GameScene extends Phaser.Scene {
             scoreText.setText(`Earnings: \$${score}`);
             //Place snakes randomly
             randomCoord = assignCoords();
-            gameState.enemies.create(randomCoord.x, randomCoord.y, 'snake').setScale(.02).refreshBody();
+            gameState.enemies.create(randomCoord.x, randomCoord.y, 'snake').setScale(.0125);
         });
 
         //Collision detection between player and snake
