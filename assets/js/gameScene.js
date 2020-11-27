@@ -65,8 +65,8 @@ class GameScene extends Phaser.Scene {
 
         //Generate random coorinates
         function generateRandomCoords() {
-            const randomX = Math.floor(Math.random() * 186);
-            const randomY = Math.floor(Math.random() * 168);
+            const randomX = Math.floor(Math.random() * 161 + 25 );
+            const randomY = Math.floor(Math.random() * 143 + 25);
             return { x: randomX, y: randomY };
         }
 
