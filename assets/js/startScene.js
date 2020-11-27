@@ -4,7 +4,6 @@ class StartScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('start', 'assets/images/placeholder.jpg');
         this.load.audio('ping', ['assets/sound/Gameboy_Startup_Sound.ogg']);
         this.load.audio('startSound', ['assets/sound/start-game.ogg']);
     }
