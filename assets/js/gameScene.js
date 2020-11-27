@@ -1,11 +1,11 @@
 let score = 0;
 let moneyMultiplier = 100;
 let speed = .4;
+let randomCoord;
 
 let gameState = {
     numCoordinates: {}
 };
-let randomCoord;
 
 class GameScene extends Phaser.Scene {
     constructor() {
