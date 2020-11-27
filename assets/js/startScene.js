@@ -20,7 +20,8 @@ class StartScene extends Phaser.Scene {
         const startPrompt2 = this.add.text(60, 105, `To Start`, { fontSize: '15px', fill: '#fff' });
 
         this.input.keyboard.on('keydown', (e) => {
-            if (e.keyCode === 13) {
+            const keypressIsEnter = e.keyCode === 13;
+            if (keypressIsEnter) {
                 this.scene.stop('StartScene');
                 this.scene.start('GameScene');
                 startGameSound.play();
