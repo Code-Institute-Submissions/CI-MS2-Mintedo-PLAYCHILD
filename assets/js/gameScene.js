@@ -13,6 +13,10 @@ class GameScene extends Phaser.Scene {
     }
 
     preload() {
+        this.load.audio('music', ['assets/sound/8-bit-loop.ogg']);
+        this.load.audio('collect', ['assets/sound/collectcoin.ogg']);
+        this.load.audio('death', ['assets/sound/player-death.ogg']);
+
         this.load.image('player-idle', 'assets/images/idle.gif');
         this.load.image('player-left', 'assets/images/run-left.gif');
         this.load.image('player-right', 'assets/images/run-right.gif');
@@ -43,10 +47,13 @@ class GameScene extends Phaser.Scene {
         gameState.enemies = this.physics.add.group();
 
         //Collision detection between player and gems
+        const collectSound = this.sound.add('collect');
         this.physics.add.overlap(gameState.player, gameState.gem, () => {
             console.log(gameState.numCoordinates)
             // Hide gem upon collecting
             gameState.gem.disableBody();
+            // Play collect sound
+            collectSound.play();
             //Move gem somewhere else on canvas
             delete gameState.numCoordinates[`x${gameState.gem.x}y${gameState.gem.y}`];
             randomCoord = assignCoords();
@@ -73,8 +80,16 @@ class GameScene extends Phaser.Scene {
             gameState.enemies.create(randomCoord.x, randomCoord.y, 'snake').setScale(.0125);
         });
 
+        //Play music on loop
+        const music = this.sound.add('music');
+        music.setLoop(true);
+        music.play();
+
         //Collision detection between player and snake
-        this.physics.add.collider(gameState.player, gameState.enemies, () => this.endGame());
+        this.physics.add.collider(gameState.player, gameState.enemies, () => {
+            this.endGame();
+            music.stop();
+        });
 
         //Generate random coorinates
         function generateRandomCoords() {
@@ -160,5 +175,8 @@ class GameScene extends Phaser.Scene {
                 this.scene.start('EndScene');
             }
         });
+        const music = this.sound.add('music');
+        const death = this.sound.add('death');
+        death.play();
     }
 }
