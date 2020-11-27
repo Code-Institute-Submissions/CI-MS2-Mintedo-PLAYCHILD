@@ -16,11 +16,15 @@ class GameScene extends Phaser.Scene {
         this.load.image('player-idle', 'assets/images/idle.gif');
         this.load.image('player-left', 'assets/images/run-left.gif');
         this.load.image('player-right', 'assets/images/run-right.gif');
+        this.load.image('ground', 'assets/images/ground.png')
         this.load.image('snake', 'assets/images/snake.png');
         this.load.image('gem', 'assets/images/gem.png');
     }
 
     create() {
+        //Create background
+        this.add.image(0, 0, 'ground').setOrigin(0).setScale(1.2);
+
         //Create and display score
         let scoreText = this.add.text(0, 0, `Treasure: $${score}`, { fontSize: '15px', fill: '#fff' });
 
