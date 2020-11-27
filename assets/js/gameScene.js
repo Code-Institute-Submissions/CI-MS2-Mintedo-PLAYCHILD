@@ -89,36 +89,16 @@ class GameScene extends Phaser.Scene {
         const leftArrow = cursors.left.isDown;
         const upArrow = cursors.up.isDown;
         const downArrow = cursors.down.isDown;
-
         // If an arrow key is pressed, players moves
-        if (cursors.right.isDown) {
+        if (rightArrow) {
             movePlayerRight();
-            console.log('Right');    
-        } else if (cursors.left.isDown) {
+        } else if (leftArrow) {
             movePlayerLeft();
-            console.log('Left');
-        } else if (cursors.up.isDown) {
+        } else if (upArrow) {
             movePlayerUp();
-            console.log('Up');
-        } else if (cursors.down.isDown) {
+        } else if (downArrow) {
             movePlayerDown();
-            console.log('Down');
         }
-
-        // Variables to store player coordinates
-        const playerXCoord = gameState.player.x;
-        const playerYCoord = gameState.player.y;
-        console.log(gameState.player.velocity)
-
-        //Check player border collision
-        // if (playerXCoord <= 32 || playerXCoord >= 448) {
-        //     this.endGame();
-        // }
-
-        // if (playerYCoord <= 32 || playerYCoord >= 568) {
-        //     this.endGame();
-        // }
-
 
         //Move player in direction pressed
         function movePlayerRight() {
