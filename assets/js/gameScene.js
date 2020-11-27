@@ -85,6 +85,7 @@ class GameScene extends Phaser.Scene {
 
         //Function that returns random coordinates (NOT gameState.numCoordinates)
         function assignCoords() {
+            console.log(gameState.player.x, gameState.player.y)
             let assignedCoord = generateRandomCoords();
 
             //Stop things being placed where there is already a game object
@@ -92,7 +93,11 @@ class GameScene extends Phaser.Scene {
                 assignedCoord = generateRandomCoords();
             }
             //Stop things being placed where the player is
-            while (assignCoords.x - 100 >= gameState.player.x && assignCoords.x + 100 <= gameState.player.x && assignCoords.y - 100 >= gameState.player.y && assignCoords.y + 100 <= gameState.player.y) {
+            function isBetween(coord, minMax) {
+                return coord+30 >= minMax && coord-30 <= minMax;
+            }
+            
+            while (isBetween(assignedCoord.x, gameState.player.x) && isBetween(assignedCoord.y, gameState.player.y)) {
                 assignedCoord = generateRandomCoords();
             }
 
