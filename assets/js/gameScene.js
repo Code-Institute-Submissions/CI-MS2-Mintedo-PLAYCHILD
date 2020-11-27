@@ -63,13 +63,14 @@ class GameScene extends Phaser.Scene {
             scoreText.setText(`Earnings: \$${score}`);
             //Increment Speed and Money Multiplier with Score
             function incrementScore() {
-                let num = 1000;
-                let num2 = 1;
-                if (score % num >= num2) {
+                let threshold = 1000;
+                let minimumRemainder = 1;
+                let scoreIsAboveThousand = score % threshold >= minimumRemainder;
+                if (scoreIsAboveThousand) {
                     speed += .025;
                     moneyMultiplier += 1;
-                    num += 1000;
-                    num2 += 1;
+                    threshold += 1000;
+                    minimumRemainder += 1;
                 }
             }
             incrementScore();
