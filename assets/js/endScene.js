@@ -10,6 +10,8 @@ class EndScene extends Phaser.Scene {
 
     create() {
         screen = this.add.image(0, 0, 'end').setOrigin(0).setScale(1.8);
+        const replayText1 = this.add.text(35, 110, `Press any key`, {fontSize: '15px', fill: '#fff' });
+        const replayText2 = this.add.text(35, 125, `to play again`, {fontSize: '15px', fill: '#fff' });
 
         // Resets score to 0 for next round
         score = 0;
