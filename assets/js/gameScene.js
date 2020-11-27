@@ -34,7 +34,6 @@ class GameScene extends Phaser.Scene {
 
         //Creating player sprite and setting boundaries
         gameState.player = this.physics.add.sprite(50, 50, 'player-idle').setScale(.8).refreshBody();
-        // console.log(gameState);
         this.physics.world.setBounds(0, 0, 186, 168);
         gameState.player.setCollideWorldBounds(true);
         gameState.player.body.collideWorldBounds = true;
@@ -49,7 +48,6 @@ class GameScene extends Phaser.Scene {
         //Collision detection between player and gems
         const collectSound = this.sound.add('collect');
         this.physics.add.overlap(gameState.player, gameState.gem, () => {
-            console.log(gameState.numCoordinates)
             // Hide gem upon collecting
             gameState.gem.disableBody();
             // Play collect sound
@@ -83,6 +81,7 @@ class GameScene extends Phaser.Scene {
         //Play music on loop
         const music = this.sound.add('music');
         music.setLoop(true);
+        music.setVolume(0.5);
         music.play();
 
         //Collision detection between player and snake
@@ -100,7 +99,6 @@ class GameScene extends Phaser.Scene {
 
         //Function that returns random coordinates (NOT gameState.numCoordinates)
         function assignCoords() {
-            console.log(gameState.player.x, gameState.player.y)
             let assignedCoord = generateRandomCoords();
 
             //Stop things being placed where there is already a game object
@@ -177,6 +175,7 @@ class GameScene extends Phaser.Scene {
         });
         const music = this.sound.add('music');
         const death = this.sound.add('death');
+        death.setVolume(0.9)
         death.play();
     }
 }
