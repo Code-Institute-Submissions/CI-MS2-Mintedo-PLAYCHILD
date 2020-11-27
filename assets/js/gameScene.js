@@ -1,6 +1,6 @@
 let score = 0;
-const moneyMultiplier = 100;
-const speed = .5;
+let moneyMultiplier = 100;
+let speed = .4;
 
 let gameState = {
     numCoordinates: {}
@@ -44,6 +44,7 @@ class GameScene extends Phaser.Scene {
 
         //Collision detection between player and gems
         this.physics.add.overlap(gameState.player, gameState.gem, () => {
+            console.log(gameState.numCoordinates)
             // Hide gem upon collecting
             gameState.gem.disableBody();
             //Move gem somewhere else on canvas
@@ -55,6 +56,18 @@ class GameScene extends Phaser.Scene {
             score += (Math.round(Math.random() * 10) * moneyMultiplier);
             //Update score text
             scoreText.setText(`Earnings: \$${score}`);
+            //Increment Speed and Money Multiplier with Score
+            function incrementScore() {
+                let num = 1000;
+                let num2 = 1;
+                if (score % num >= num2) {
+                    speed += .025;
+                    moneyMultiplier += 1;
+                    num += 1000;
+                    num2 += 1;
+                }
+            }
+            incrementScore();
             //Place snakes randomly
             randomCoord = assignCoords();
             gameState.enemies.create(randomCoord.x, randomCoord.y, 'snake').setScale(.0125);
@@ -65,7 +78,7 @@ class GameScene extends Phaser.Scene {
 
         //Generate random coorinates
         function generateRandomCoords() {
-            const randomX = Math.floor(Math.random() * 161 + 25 );
+            const randomX = Math.floor(Math.random() * 161 + 25);
             const randomY = Math.floor(Math.random() * 143 + 25);
             return { x: randomX, y: randomY };
         }
@@ -76,10 +89,14 @@ class GameScene extends Phaser.Scene {
 
             //Stop things being placed where there is already a game object
             while (gameState.numCoordinates[`x${assignedCoord.x}y${assignedCoord.y}`]) {
-                assignedCoord = generateRandomCoords()
+                assignedCoord = generateRandomCoords();
+            }
+            //Stop things being placed where the player is
+            while (assignCoords.x - 100 >= gameState.player.x && assignCoords.x + 100 <= gameState.player.x && assignCoords.y - 100 >= gameState.player.y && assignCoords.y + 100 <= gameState.player.y) {
+                assignedCoord = generateRandomCoords();
             }
 
-            gameState.numCoordinates[`x${assignedCoord.x}y${assignedCoord.y}`] = true
+            gameState.numCoordinates[`x${assignedCoord.x}y${assignedCoord.y}`] = true;
 
             return assignedCoord;
         }
