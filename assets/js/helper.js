@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    //Checks which keys are being pressed
+    //Checks which key is being pressed
     function checkDownKey(e) {
         if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
             animateDPad(e.key);
@@ -10,6 +10,7 @@ $(document).ready(function () {
         }
     }
 
+    //Checks qhich key is being released
     function checkUpKey(e) {
         if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
             resetDPad(e.key);
@@ -72,10 +73,8 @@ $(document).ready(function () {
 
     function animateStartSelectButton(key) {
         if (key === 13) {
-            console.log(13);
             $(startButton).addClass("start-select-button-animation");
         } else if (key === 32) {
-            console.log(32);
             $(selectButton).addClass("start-select-button-animation");
         }
     }
