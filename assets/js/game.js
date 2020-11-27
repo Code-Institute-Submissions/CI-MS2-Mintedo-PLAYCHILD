@@ -15,5 +15,9 @@ $(document).ready(function() {
         scene: [StartScene, GameScene, EndScene]
     };
     
-    const game = new Phaser.Game(config);
+    function createGame() {
+        const game = new Phaser.Game(config);
+    }
+
+    setTimeout(createGame, 2500);
 })
