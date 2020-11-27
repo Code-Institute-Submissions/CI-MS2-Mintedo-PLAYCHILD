@@ -1,6 +1,6 @@
 class StartScene extends Phaser.Scene {
     constructor() {
-        super({key: 'StartScene'})
+        super({ key: 'StartScene' })
     }
 
     preload() {
@@ -13,10 +13,12 @@ class StartScene extends Phaser.Scene {
         const introText2 = this.add.text(20, 65, `Avoid the Snakes`, { fontSize: '15px', fill: '#fff' });
         const startPrompt1 = this.add.text(44, 90, `Press Enter`, { fontSize: '15px', fill: '#fff' });
         const startPrompt2 = this.add.text(60, 105, `To Start`, { fontSize: '15px', fill: '#fff' });
-        
-        this.input.keyboard.on('keydown', () => {
-            this.scene.stop('StartScene');
-            this.scene.start('GameScene');
-        });
-    }
+
+        this.input.keyboard.on('keydown', (e) => {
+            if (e.keyCode === 13) {
+                this.scene.stop('StartScene');
+                this.scene.start('GameScene');
+            };
+    });
+}
 }
