@@ -13,6 +13,8 @@ class EndScene extends Phaser.Scene {
 
         // Resets score to 0 for next round
         score = 0;
+        moneyMultiplier = 100;
+        speed = .4;
 
         // Reset object positions
         gameState.numCoordinates = {};
