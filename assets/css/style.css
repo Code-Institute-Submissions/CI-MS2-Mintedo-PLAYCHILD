@@ -38,7 +38,7 @@ svg {
 /* -------------------------------------------------Animations */
 /* D-Pad Left */
 .d-pad-left-animation {
-    animation: d-pad-left .1s ease-in-out;
+    animation: d-pad-left .025s ease-out;
     animation-fill-mode: forwards;
     transform-origin: center;
     transform-box: fill-box;
@@ -49,13 +49,13 @@ svg {
         transform: translateX(0)
     }
     to {
-        transform: translateX(-.15rem);
+        transform: translateX(-.2rem);
     }
 }
 
 /* D-Pad Right */
 .d-pad-right-animation {
-    animation: d-pad-right .1s ease-in-out;
+    animation: d-pad-right .025s ease-out;
     animation-fill-mode: forwards;
     transform-origin: center;
     transform-box: fill-box;
@@ -66,13 +66,13 @@ svg {
         transform: translateX(0)
     }
     to {
-        transform: translateX(.15rem);
+        transform: translateX(.2rem);
     }
 }
 
 /* D-Pad Up */
 .d-pad-up-animation {
-    animation: d-pad-up .1s ease-in-out;
+    animation: d-pad-up .025s ease-out;
     animation-fill-mode: forwards;
     transform-origin: center;
     transform-box: fill-box;
@@ -83,13 +83,13 @@ svg {
         transform: translateY(0)
     }
     to {
-        transform: translateY(-.15rem);
+        transform: translateY(-.2rem);
     }
 }
 
 /* D-Pad Down */
 .d-pad-down-animation {
-    animation: d-pad-down .1s ease-in-out;
+    animation: d-pad-down .025s ease-out;
     animation-fill-mode: forwards;
     transform-origin: center;
     transform-box: fill-box;
@@ -100,13 +100,13 @@ svg {
         transform: translateY(0)
     }
     to {
-        transform: translateY(.15rem);
+        transform: translateY(.2rem);
     }
 }
 
 /* A/B Buttons */
 .a-b-button-animation {
-    animation: a-b-button .1s ease-in-out;
+    animation: a-b-button .025s ease-out;
     animation-fill-mode: forwards;
     transform-origin: center;
     transform-box: fill-box;
@@ -118,5 +118,22 @@ svg {
     }
     to {
         transform: translate(-.15rem, .15rem);
+    }
+}
+
+/* Start/Select Buttons */
+.start-select-button-animation {
+    animation: start-select-button .025s ease-out;
+    animation-fill-mode: forwards;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+@keyframes start-select-button {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(.95);
     }
 }

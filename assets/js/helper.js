@@ -5,6 +5,8 @@ $(document).ready(function () {
             animateDPad(e.key);
         } else if (e.key === 'a' || e.key === 'b') {
             animateABButton(e.key);
+        } else if (e.keyCode === 32 || e.keyCode === 13) {
+            animateStartSelectButton(e.keyCode)
         }
     }
 
@@ -13,6 +15,8 @@ $(document).ready(function () {
             resetDPad(e.key);
         } else if (e.key === 'a' || e.key === 'b') {
             resetABButton(e.key);
+        } else if (e.keyCode === 32 || e.keyCode === 13) {
+            resetStartSelectButton(e.keyCode);
         }
     }
 
@@ -62,9 +66,27 @@ $(document).ready(function () {
         }
     }
 
-
     //Select & Start Button Animation
+    const startButton = $("#start-button");
+    const selectButton = $("#select-button");
 
+    function animateStartSelectButton(key) {
+        if (key === 13) {
+            console.log(13);
+            $(startButton).addClass("start-select-button-animation");
+        } else if (key === 32) {
+            console.log(32);
+            $(selectButton).addClass("start-select-button-animation");
+        }
+    }
+
+    function resetStartSelectButton(key) {
+        if (key === 13) {
+            $(startButton).removeClass();
+        } else if (key === 32) {
+            $(selectButton).removeClass();
+        }
+    }
 
     //Power LED On
     const powerLEDImgOff = $('#power-led-off');
