@@ -51,6 +51,7 @@ class GameScene extends Phaser.Scene {
             // Hide gem upon collecting
             gameState.gem.disableBody();
             // Play collect sound
+            collectSound.setVolume(1.2);
             collectSound.play();
             //Move gem somewhere else on canvas
             delete gameState.numCoordinates[`x${gameState.gem.x}y${gameState.gem.y}`];
@@ -82,7 +83,7 @@ class GameScene extends Phaser.Scene {
         //Play music on loop
         const music = this.sound.add('music');
         music.setLoop(true);
-        music.setVolume(0.5);
+        music.setVolume(0.25);
         music.play();
 
         //Collision detection between player and snake
