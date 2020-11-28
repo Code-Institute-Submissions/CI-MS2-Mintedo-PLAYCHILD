@@ -22,7 +22,7 @@ class GameScene extends Phaser.Scene {
         this.load.image('player-right', 'assets/images/run-right.gif');
         this.load.image('ground', 'assets/images/ground.png')
         this.load.image('snake', 'assets/images/snake.png');
-        this.load.image('gem', 'assets/images/gem.png');
+        this.load.image('gem', 'assets/images/Purple-Gem.png');
     }
 
     create() {
