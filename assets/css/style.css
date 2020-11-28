@@ -15,24 +15,81 @@ h2 {
     margin-bottom: 1rem;
 }
 
+.container {
+    height: 95vh;
+}
+
 .hidden {
     visibility: hidden;
 }
 
-/* -------------------------------------------------Manual */
-.manual {
+/* -------------------------------------------------Modal/Manual */
+.btn {
+    position: absolute;
+    top: 8.5rem;
+    left: 65vw;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.btn:hover {
+    color: #fafafa;
+    background-color: black;
+    cursor: pointer;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    padding-top: 10rem;
+    background-color: rgba(0, 0, 0, .4);
+}
+
+.modal-content {
+    background-color: #fafafa;
+    margin: auto;
+    padding: 2rem;
+    width: 30%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    transition: all .1s;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.desktop-manual {
     display: block;
     font-family: 'Press Start 2P', cursive;
     margin-left: 10%;
     line-height: 3.2rem;
 }
 
-.manual ul {
+.desktop-manual ul {
     list-style: none;
 }
 
-.manual ul li {
+.desktop-manual ul li {
     font-size: 1.5rem;
+}
+
+.mobile-manual {
+    display: none;
 }
 
 /* -------------------------------------------------Console */
@@ -156,5 +213,45 @@ svg {
     }
     to {
         transform: scale(.95);
+    }
+}
+
+/* -------------------------------------------------Media Queries */
+@media screen and (max-width: 992px) {
+    .container {
+        height: 1vh;
+    }
+    
+    .btn {
+        top: 2rem;
+        left: 50vw;
+        transform: translateX(-50%);
+    }
+
+    .modal-content {
+        width: 80%;
+    }
+    
+    .desktop-manual {
+        display: none;
+    }
+
+    .mobile-manual {
+        display: block;
+        font-family: 'Press Start 2P', cursive;
+        margin-left: 3%;
+        line-height: 3.2rem;
+    }
+
+    .mobile-manual ul {
+        list-style: none;
+    }
+    
+    #console {
+        margin-top: 8rem;
+    }
+
+    svg {
+        position: absolute;
     }
 }

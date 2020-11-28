@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    //-------------------------------------------------Console animations
     //Checks which key is being pressed
     function checkDownKey(e) {
         if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
@@ -98,4 +99,17 @@ $(document).ready(function () {
     //Calling Listeners
     $(document).keydown(checkDownKey);
     $(document).keyup(checkUpKey);
+
+    //-------------------------------------------------Modal
+    const modal = $(".modal");
+    const button = $(".btn");
+    const span = $(".close");
+
+    button.on("click", function () {
+        modal.css("display", "block");
+    })
+
+    span.on("click", function () {
+        modal.css("display", "none");
+    })
 })
