@@ -169,8 +169,8 @@ class GameScene extends Phaser.Scene {
     //A function that ends the game
     endGame() {
         this.physics.pause();
-        this.cameras.main.fade(800, 0, 0, 0, false, function (camera, progress) {
-            if (progress > .5) {
+        this.cameras.main.fade(1600, 0, 0, 0, false, function (camera, progress) {
+            if (progress > .99) {
                 this.scene.stop('GameScene');
                 this.scene.start('EndScene');
             }
