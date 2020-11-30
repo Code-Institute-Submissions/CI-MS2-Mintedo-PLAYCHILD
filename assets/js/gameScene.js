@@ -46,6 +46,7 @@ class GameScene extends Phaser.Scene {
         gameState.enemies = this.physics.add.group();
 
         //Collision detection between player and gems
+        //Play collect sound
         const collectSound = this.sound.add('collect');
         this.physics.add.overlap(gameState.player, gameState.gem, () => {
             // Hide gem upon collecting
@@ -77,7 +78,7 @@ class GameScene extends Phaser.Scene {
             incrementScore();
             //Place snakes randomly
             randomCoord = assignCoords();
-            gameState.enemies.create(randomCoord.x, randomCoord.y, 'snake').setScale(.0125);
+            gameState.enemies.create(randomCoord.x, randomCoord.y, 'snake').setScale(.0125).setSize(400, 400);
         });
 
         //Play music on loop
