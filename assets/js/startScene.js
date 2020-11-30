@@ -13,10 +13,10 @@ class StartScene extends Phaser.Scene {
         const startupSound = this.sound.add('ping');
         startupSound.play();
 
-        const introText1 = this.add.text(24, 50, `Gather the Gems`, { fontSize: '15px', fill: '#fff' });
-        const introText2 = this.add.text(20, 65, `Avoid the Snakes`, { fontSize: '15px', fill: '#fff' });
-        const startPrompt1 = this.add.text(44, 90, `Press Enter`, { fontSize: '15px', fill: '#fff' });
-        const startPrompt2 = this.add.text(60, 105, `To Start`, { fontSize: '15px', fill: '#fff' });
+        const introText1 = this.add.text(60, 60, `Gather the Gems`, { fontSize: '22px', fill: '#fff' });
+        const introText2 = this.add.text(53, 90, `Avoid the Snakes`, { fontSize: '22px', fill: '#fff' });
+        const startPrompt1 = this.add.text(93, 150, `Press Enter`, { fontSize: '19px', fill: '#fff' });
+        const startPrompt2 = this.add.text(112, 175, `To Begin`, { fontSize: '19px', fill: '#fff' });
 
         this.input.keyboard.on('keydown', (e) => {
             const keypressIsEnter = e.keyCode === 13;

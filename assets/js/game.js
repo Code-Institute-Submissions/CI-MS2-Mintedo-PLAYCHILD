@@ -1,7 +1,7 @@
 $(document).ready(function() {
     const config = {
-        height: 168,
-        width: 186,
+        height: 288,
+        width: 315,
         resolution: window.devicePixelRatio,
         type: Phaser.WEBGL.AUTO,
         parent: 'game-scene',
@@ -12,10 +12,7 @@ $(document).ready(function() {
                 enableBody: true
             }
         },
-        scene: [StartScene, GameScene, EndScene],
-        scale: {
-            mode: Phaser.Scale.FIT
-        }
+        scene: [StartScene, GameScene, EndScene]
     };
     
     function createGame() {
