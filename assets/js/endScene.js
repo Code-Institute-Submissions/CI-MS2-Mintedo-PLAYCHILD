@@ -10,10 +10,10 @@ class EndScene extends Phaser.Scene {
     create() {
         this.cameras.main.fadeIn(600);
 
-        screen = this.add.image(0, 0, 'end').setOrigin(0).setScale(1.8);
-        const finalScore = this.add.text(40, 20, `Score: $${score}`, {fontSize: '17px', fill: '#fff'});
-        const replayText1 = this.add.text(35, 110, `Press any key`, {fontSize: '15px', fill: '#fff'});
-        const replayText2 = this.add.text(35, 125, `to play again`, {fontSize: '15px', fill: '#fff'});
+        screen = this.add.image(0, 0, 'end').setOrigin(0).setScale(3);
+        const finalScore = this.add.text(68, 30, `Score: $${score}`, {fontSize: '25px', fill: '#fff'});
+        const replayText1 = this.add.text(80, 190, `Press any key`, {fontSize: '20px', fill: '#fff'});
+        const replayText2 = this.add.text(80, 220, `to play again`, {fontSize: '20px', fill: '#fff'});
 
         // Resets score, money multiplier and speed for next round
         score = 0;
