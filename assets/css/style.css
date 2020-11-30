@@ -17,6 +17,7 @@ h2 {
 
 .container {
     height: 40vh;
+    margin-top: 22rem;
 }
 
 .hidden {
@@ -27,7 +28,7 @@ h2 {
 .btn {
     position: absolute;
     top: 8.5rem;
-    left: 65vw;
+    left: 75vw;
     font-family: 'Press Start 2P', cursive;
     font-size: 20px;
     padding: 1rem;
@@ -96,13 +97,14 @@ h2 {
 #console {
     display: flex;
     justify-content: center;
-    margin-top: 20rem;
 }
 
 svg {
     position: absolute;
     z-index: -1;
     transform: translateX(-.25rem);
+    transform: scale(1.7);
+    margin-top: 2rem;
 }
 
 /* -------------------------------------------------Game Scene */
@@ -110,7 +112,9 @@ svg {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 8rem;
+    margin: -5rem auto;
+    height: 28.85rem;
+    margin-left: .75rem;
 }
 
 /* -------------------------------------------------Animations */

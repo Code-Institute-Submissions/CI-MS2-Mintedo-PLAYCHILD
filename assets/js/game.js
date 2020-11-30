@@ -12,7 +12,10 @@ $(document).ready(function() {
                 enableBody: true
             }
         },
-        scene: [StartScene, GameScene, EndScene]
+        scene: [StartScene, GameScene, EndScene],
+        scale: {
+            mode: Phaser.Scale.FIT
+        }
     };
     
     function createGame() {
