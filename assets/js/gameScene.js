@@ -17,12 +17,12 @@ class GameScene extends Phaser.Scene {
         this.load.audio('collect', ['assets/sound/collectcoin.ogg']);
         this.load.audio('death', ['assets/sound/player-death.ogg']);
 
-        this.load.spritesheet('player-idle', 'assets/images/player-idle-spritesheet.png', {frameWidth: 19, frameHeight: 34});
-        this.load.spritesheet('player-run-left', 'assets/images/player-run-left-spritesheet.png', {frameWidth: 21, frameHeight: 33});
-        this.load.spritesheet('player-run-right', 'assets/images/player-run-right-spritesheet.png', {frameWidth: 21, frameHeight: 33});
+        this.load.spritesheet('player-idle', 'assets/images/player-idle-spritesheet.png', { frameWidth: 19, frameHeight: 34 });
+        this.load.spritesheet('player-run-left', 'assets/images/player-run-left-spritesheet.png', { frameWidth: 21, frameHeight: 33 });
+        this.load.spritesheet('player-run-right', 'assets/images/player-run-right-spritesheet.png', { frameWidth: 21, frameHeight: 33 });
+        this.load.spritesheet('snake-spritesheet', 'assets/images/snake-spritesheet.png', { frameWidth: 32, frameHeight: 32 });
 
-        this.load.image('ground', 'assets/images/ground.png')
-        this.load.image('snake', 'assets/images/snake.png');
+        this.load.image('ground', 'assets/images/ground.png');
         this.load.image('gem', 'assets/images/Purple-Gem.png');
     }
 
@@ -42,25 +42,25 @@ class GameScene extends Phaser.Scene {
         //Player Animations - referenced http://phaser.io/tutorials/making-your-first-phaser-3-game/part7
         this.anims.create({
             key: 'idle',
-            frames: this.anims.generateFrameNumbers('player-idle', {start: 0, end: 11}),
+            frames: this.anims.generateFrameNumbers('player-idle', { start: 0, end: 11 }),
             frameRate: 10,
             repeat: -1
         });
 
         this.anims.create({
             key: 'left',
-            frames: this.anims.generateFrameNumbers('player-run-left', {start: 0, end: 11}),
+            frames: this.anims.generateFrameNumbers('player-run-left', { start: 0, end: 11 }),
             frameRate: 10,
             repeat: -1
         });
 
         this.anims.create({
             key: 'right',
-            frames: this.anims.generateFrameNumbers('player-run-right', {start: 0, end: 11}),
+            frames: this.anims.generateFrameNumbers('player-run-right', { start: 0, end: 11 }),
             frameRate: 10,
             repeat: -1
         });
-
+        //Play idle animation on game start
         gameState.player.anims.play('idle', true);
 
         //Creating gems in random spots
@@ -68,7 +68,15 @@ class GameScene extends Phaser.Scene {
         gameState.gem = this.physics.add.sprite(randomCoord.x, randomCoord.y, 'gem').setScale(.0125).refreshBody();
 
         //Create snake sprite group
-        gameState.enemies = this.physics.add.group();
+        gameState.enemies = this.physics.add.group().playAnimation('snake-idle');
+
+        // Create snake animations
+        this.anims.create({
+            key: 'snake-idle',
+            frames: this.anims.generateFrameNumbers('snake-spritesheet', { start: 0, end: 2 }),
+            frameRate: 3,
+            repeat: -1
+        });
 
         //Collision detection between player and gems
         //Play collect sound
@@ -103,7 +111,11 @@ class GameScene extends Phaser.Scene {
             incrementScore();
             //Place snakes randomly
             randomCoord = assignCoords();
-            gameState.enemies.create(randomCoord.x, randomCoord.y, 'snake').setScale(.0125).setSize(400, 400);
+            gameState.enemies.create(randomCoord.x, randomCoord.y, 'snake-idle').setScale(.75).setSize(20, 20);
+            console.log(gameState.enemies.getLast());
+            Phaser.Actions.Call(gameState.enemies.getChildren(), child => {
+                child.anims.play('snake-idle');
+            });
         })
 
         //Play music on loop

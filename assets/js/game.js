@@ -20,4 +20,4 @@ $(document).ready(function() {
     }
 
     setTimeout(createGame, 2500);
-})
+});
