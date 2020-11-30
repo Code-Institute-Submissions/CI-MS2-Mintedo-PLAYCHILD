@@ -112,7 +112,6 @@ class GameScene extends Phaser.Scene {
             //Place snakes randomly
             randomCoord = assignCoords();
             gameState.enemies.create(randomCoord.x, randomCoord.y, 'snake-idle').setScale(.75).setSize(20, 20);
-            console.log(gameState.enemies.getLast());
             Phaser.Actions.Call(gameState.enemies.getChildren(), child => {
                 child.anims.play('snake-idle');
             });
