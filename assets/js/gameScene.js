@@ -17,9 +17,8 @@ class GameScene extends Phaser.Scene {
         this.load.audio('collect', ['assets/sound/collectcoin.ogg']);
         this.load.audio('death', ['assets/sound/player-death.ogg']);
 
-        this.load.image('player-idle', 'assets/images/idle.gif');
-        this.load.image('player-left', 'assets/images/run-left.gif');
-        this.load.image('player-right', 'assets/images/run-right.gif');
+        this.load.spritesheet('player-idle', 'assets/images/player-idle-spritesheet.png', {frameWidth: 19, frameHeight: 34});
+
         this.load.image('ground', 'assets/images/ground.png')
         this.load.image('snake', 'assets/images/snake.png');
         this.load.image('gem', 'assets/images/Purple-Gem.png');
@@ -37,6 +36,30 @@ class GameScene extends Phaser.Scene {
         this.physics.world.setBounds(0, 0, 186, 168);
         gameState.player.setCollideWorldBounds(true);
         gameState.player.body.collideWorldBounds = true;
+
+        //Player Animations - referenced http://phaser.io/tutorials/making-your-first-phaser-3-game/part7
+        this.anims.create({
+            key: 'idle',
+            frames: this.anims.generateFrameNumbers('player-idle', {start: 0, end: 11}),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'left',
+            frames: this.anims.generateFrameNumbers('player-idle', {start: 0, end: 11}),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'right',
+            frames: this.anims.generateFrameNumbers('player-idle', {start: 0, end: 11}),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        gameState.player.anims.play('idle', true);
 
         //Creating gems in random spots
         randomCoord = assignCoords();
@@ -79,7 +102,7 @@ class GameScene extends Phaser.Scene {
             //Place snakes randomly
             randomCoord = assignCoords();
             gameState.enemies.create(randomCoord.x, randomCoord.y, 'snake').setScale(.0125).setSize(400, 400);
-        });
+        })
 
         //Play music on loop
         const music = this.sound.add('music');
@@ -110,9 +133,9 @@ class GameScene extends Phaser.Scene {
             }
             //Stop things being placed where the player is
             function isBetween(coord, minMax) {
-                return coord+30 >= minMax && coord-30 <= minMax;
+                return coord + 30 >= minMax && coord - 30 <= minMax;
             }
-            
+
             while (isBetween(assignedCoord.x, gameState.player.x) && isBetween(assignedCoord.y, gameState.player.y)) {
                 assignedCoord = generateRandomCoords();
             }
@@ -147,12 +170,14 @@ class GameScene extends Phaser.Scene {
             gameState.player.setTexture('player-right');
             gameState.player.setVelocityX(150 * speed);
             gameState.player.setVelocityY(0);
+            gameState.player.anims.play('right', true);
         }
 
         function movePlayerLeft() {
             gameState.player.setTexture('player-left');
             gameState.player.setVelocityX(-150 * speed);
             gameState.player.setVelocityY(0);
+            gameState.player.anims.play('left', true);
         }
 
         function movePlayerUp() {
