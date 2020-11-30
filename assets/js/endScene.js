@@ -15,6 +15,51 @@ class EndScene extends Phaser.Scene {
         const replayText1 = this.add.text(80, 190, `Press any key`, {fontSize: '20px', fill: '#fff'});
         const replayText2 = this.add.text(80, 220, `to play again`, {fontSize: '20px', fill: '#fff'});
 
+        //Blinking Text Class from https://www.stephengarside.co.uk/blog/phaser-3-flashing-text-easy-example/
+        class TweenHelper {
+            static flashElement(scene, element, repeat = true, easing = 'Linear', overallDuration = 1000, visiblePauseDuration = 400) {
+                if (scene && element) {
+                    let flashDuration = overallDuration - visiblePauseDuration / 2;
+
+                    scene.tweens.timeline({
+                        tweens: [
+                            {
+                                targets: element,
+                                duration: 0,
+                                alpha: 0,
+                                ease: easing
+                            },
+                            {
+                                targets: element,
+                                duration: flashDuration,
+                                alpha: 1,
+                                ease: easing
+                            },
+                            {
+                                targets: element,
+                                duration: visiblePauseDuration,
+                                alpha: 1,
+                                ease: easing
+                            },
+                            {
+                                targets: element,
+                                duration: flashDuration,
+                                alpha: 0,
+                                ease: easing,
+                                onComplete: () => {
+                                    if (repeat === true) {
+                                        this.flashElement(scene, element);
+                                    }
+                                }
+                            }
+                        ]
+                    });
+                }
+            }
+        }
+        TweenHelper.flashElement(this, replayText1);
+        TweenHelper.flashElement(this, replayText2);
+
         // Resets score, money multiplier and speed for next round
         score = 0;
         moneyMultiplier = 100;
