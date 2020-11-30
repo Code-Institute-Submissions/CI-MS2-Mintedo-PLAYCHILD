@@ -28,16 +28,19 @@ class GameScene extends Phaser.Scene {
 
     create() {
         //Create background
-        this.add.image(0, 0, 'ground').setOrigin(0).setScale(1.2);
+        this.add.image(0, 0, 'ground').setOrigin(0).setScale(2).setSize(315,288);
 
         //Create and display score
         let scoreText = this.add.text(0, 0, `Treasure: $${score}`, { fontSize: '15px', fill: '#fff' });
 
         //Creating player sprite and setting boundaries
-        gameState.player = this.physics.add.sprite(50, 50, 'player-idle').setScale(.8).refreshBody();
-        this.physics.world.setBounds(0, 0, 186, 168);
+        gameState.player = this.physics.add.sprite(75, 100, 'player-idle').setScale(1.05).refreshBody();
+        this.physics.world.setBounds(0, 0, 315, 288);
         gameState.player.setCollideWorldBounds(true);
         gameState.player.body.collideWorldBounds = true;
+
+        //Resume any upaused animations from previous game
+        this.anims.resumeAll();
 
         //Player Animations - referenced http://phaser.io/tutorials/making-your-first-phaser-3-game/part7
         this.anims.create({
@@ -65,7 +68,7 @@ class GameScene extends Phaser.Scene {
 
         //Creating gems in random spots
         randomCoord = assignCoords();
-        gameState.gem = this.physics.add.sprite(randomCoord.x, randomCoord.y, 'gem').setScale(.0125).refreshBody();
+        gameState.gem = this.physics.add.sprite(randomCoord.x, randomCoord.y, 'gem').setScale(.02).refreshBody();
 
         //Create snake sprite group
         gameState.enemies = this.physics.add.group().playAnimation('snake-idle');
@@ -131,8 +134,8 @@ class GameScene extends Phaser.Scene {
 
         //Generate random coorinates
         function generateRandomCoords() {
-            const randomX = Math.floor(Math.random() * 161 + 25);
-            const randomY = Math.floor(Math.random() * 143 + 25);
+            const randomX = Math.floor(Math.random() * 290 + 25);
+            const randomY = Math.floor(Math.random() * 263 + 25);
             return { x: randomX, y: randomY };
         }
 
@@ -146,7 +149,7 @@ class GameScene extends Phaser.Scene {
             }
             //Stop things being placed where the player is
             function isBetween(coord, minMax) {
-                return coord + 30 >= minMax && coord - 30 <= minMax;
+                return coord + 75 >= minMax && coord - 75 <= minMax;
             }
 
             while (isBetween(assignedCoord.x, gameState.player.x) && isBetween(assignedCoord.y, gameState.player.y)) {
@@ -215,5 +218,6 @@ class GameScene extends Phaser.Scene {
         const death = this.sound.add('death');
         death.setVolume(0.9)
         death.play();
+        this.anims.pauseAll();
     }
 }
