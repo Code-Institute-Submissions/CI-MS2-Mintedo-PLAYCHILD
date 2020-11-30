@@ -18,6 +18,8 @@ class GameScene extends Phaser.Scene {
         this.load.audio('death', ['assets/sound/player-death.ogg']);
 
         this.load.spritesheet('player-idle', 'assets/images/player-idle-spritesheet.png', {frameWidth: 19, frameHeight: 34});
+        this.load.spritesheet('player-run-left', 'assets/images/player-run-left-spritesheet.png', {frameWidth: 21, frameHeight: 33});
+        this.load.spritesheet('player-run-right', 'assets/images/player-run-right-spritesheet.png', {frameWidth: 21, frameHeight: 33});
 
         this.load.image('ground', 'assets/images/ground.png')
         this.load.image('snake', 'assets/images/snake.png');
@@ -47,14 +49,14 @@ class GameScene extends Phaser.Scene {
 
         this.anims.create({
             key: 'left',
-            frames: this.anims.generateFrameNumbers('player-idle', {start: 0, end: 11}),
+            frames: this.anims.generateFrameNumbers('player-run-left', {start: 0, end: 11}),
             frameRate: 10,
             repeat: -1
         });
 
         this.anims.create({
             key: 'right',
-            frames: this.anims.generateFrameNumbers('player-idle', {start: 0, end: 11}),
+            frames: this.anims.generateFrameNumbers('player-run-right', {start: 0, end: 11}),
             frameRate: 10,
             repeat: -1
         });
@@ -167,21 +169,18 @@ class GameScene extends Phaser.Scene {
 
         //Move player in direction pressed
         function movePlayerRight() {
-            gameState.player.setTexture('player-right');
             gameState.player.setVelocityX(150 * speed);
             gameState.player.setVelocityY(0);
             gameState.player.anims.play('right', true);
         }
 
         function movePlayerLeft() {
-            gameState.player.setTexture('player-left');
             gameState.player.setVelocityX(-150 * speed);
             gameState.player.setVelocityY(0);
             gameState.player.anims.play('left', true);
         }
 
         function movePlayerUp() {
-            gameState.player.setTexture('player-idle');
             gameState.player.setVelocityX(0);
             gameState.player.setVelocityY(-150 * speed);
         }
