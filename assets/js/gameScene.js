@@ -1,8 +1,10 @@
 let score = 0;
 let moneyMultiplier = 100;
-let speed = .4;
+let speed;
+screen.width >= 596 ? speed = .4 : speed = .26;
 let randomCoord;
 
+// Creating the gamestate object to hold our objects' coordinates
 let gameState = {
     numCoordinates: {}
 };
@@ -27,15 +29,48 @@ class GameScene extends Phaser.Scene {
     }
 
     create() {
+        // Resolution settings based on display size
+        resolution = {};
+        if (screen.width >= 596) {
+            resolution.height = 288;
+            resolution.width = 315;
+            resolution.backgroundScale = 2;
+            resolution.smallFont = '20px';
+            resolution.playerStartingPosX = 75;
+            resolution.playerStartingPosY = 100;
+            resolution.playerScale = 1.05;
+            resolution.gemScale = .02;
+            resolution.snakeScale = .75;
+            resolution.snakeSizeX = 20;
+            resolution.snakeSizeY = 20;
+            resolution.randomCoordX = 290;
+            resolution.randomCoordY = 263;
+
+        } else if (screen.width <= 595) {
+            resolution.height = 162;
+            resolution.width = 178;
+            resolution.backgroundScale = 1.1;
+            resolution.smallFont = '15px';
+            resolution.playerStartingPosX = 50;
+            resolution.playerStartingPosY = 50;
+            resolution.playerScale = .6;
+            resolution.gemScale = .0125;
+            resolution.snakeScale = .5;
+            resolution.snakeSizeX = 9;
+            resolution.snakeSizeY = 9;
+            resolution.randomCoordX = 153;
+            resolution.randomCoordY = 137;
+        }
+
         //Create background
-        this.add.image(0, 0, 'ground').setOrigin(0).setScale(2).setSize(315,288);
+        this.add.image(0, 0, 'ground').setOrigin(0).setScale(resolution.backgroundScale).setSize(resolution.width, resolution.width);
 
         //Create and display score
-        let scoreText = this.add.text(0, 0, `Treasure: $${score}`, { fontSize: '15px', fill: '#fff' });
+        let scoreText = this.add.text(0, 0, `Treasure: $${score}`, { fontSize: resolution.smallFont, fill: '#fff' });
 
         //Creating player sprite and setting boundaries
-        gameState.player = this.physics.add.sprite(75, 100, 'player-idle').setScale(1.05).refreshBody();
-        this.physics.world.setBounds(0, 0, 315, 288);
+        gameState.player = this.physics.add.sprite(resolution.playerStartingPosX, resolution.playerStartingPosY, 'player-idle').setScale(resolution.playerScale).refreshBody();
+        this.physics.world.setBounds(0, 0, resolution.width, resolution.height);
         gameState.player.setCollideWorldBounds(true);
         gameState.player.body.collideWorldBounds = true;
 
@@ -68,7 +103,7 @@ class GameScene extends Phaser.Scene {
 
         //Creating gems in random spots
         randomCoord = assignCoords();
-        gameState.gem = this.physics.add.sprite(randomCoord.x, randomCoord.y, 'gem').setScale(.02).refreshBody();
+        gameState.gem = this.physics.add.sprite(randomCoord.x, randomCoord.y, 'gem').setScale(resolution.gemScale).refreshBody();
 
         //Create snake sprite group
         gameState.enemies = this.physics.add.group().playAnimation('snake-idle');
@@ -114,7 +149,7 @@ class GameScene extends Phaser.Scene {
             incrementScore();
             //Place snakes randomly
             randomCoord = assignCoords();
-            gameState.enemies.create(randomCoord.x, randomCoord.y, 'snake-idle').setScale(.75).setSize(20, 20);
+            gameState.enemies.create(randomCoord.x, randomCoord.y, 'snake-idle').setScale(resolution.snakeScale).setSize(resolution.snakeSizeX, resolution.snakeSizeY);
             Phaser.Actions.Call(gameState.enemies.getChildren(), child => {
                 child.anims.play('snake-idle');
             });
@@ -123,7 +158,7 @@ class GameScene extends Phaser.Scene {
         //Play music on loop
         const music = this.sound.add('music');
         music.setLoop(true);
-        music.setVolume(0.25);
+        music.setVolume(0.24);
         music.play();
 
         //Collision detection between player and snake
@@ -134,8 +169,8 @@ class GameScene extends Phaser.Scene {
 
         //Generate random coorinates
         function generateRandomCoords() {
-            const randomX = Math.floor(Math.random() * 290 + 25);
-            const randomY = Math.floor(Math.random() * 263 + 25);
+            const randomX = Math.floor(Math.random() * resolution.randomCoordX + 25);
+            const randomY = Math.floor(Math.random() * resolution.randomCoordY + 25);
             return { x: randomX, y: randomY };
         }
 
