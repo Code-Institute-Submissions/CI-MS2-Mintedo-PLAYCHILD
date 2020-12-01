@@ -8,6 +8,7 @@ class EndScene extends Phaser.Scene {
     }
 
     create() {
+        // Resolution settings based on display size
         resolution = {};
         if (screen.width >= 596) {
             resolution.endImageScale = 3;
