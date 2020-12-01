@@ -8,12 +8,35 @@ class EndScene extends Phaser.Scene {
     }
 
     create() {
+        resolution = {};
+        if (screen.width >= 596) {
+            resolution.endImageScale = 3;
+            resolution.finalScoreFontSize = '25px';
+            resolution.finalScorePosX = 60;
+            resolution.finalScorePosY = 30;
+            resolution.replayTextFontSize = '20px';
+            resolution.replayText1PosX = 80;
+            resolution.replayText1PosY = 190;
+            resolution.replayText2PosX = 80;
+            resolution.replayText2PosY = 220;
+        } else if (screen.width <= 595) {
+            resolution.endImageScale = 1.65;
+            resolution.finalScoreFontSize = '16px';
+            resolution.finalScorePosX = 32;
+            resolution.finalScorePosY = 20;
+            resolution.replayTextFontSize = '15px';
+            resolution.replayText1PosX = 30;
+            resolution.replayText1PosY = 110;
+            resolution.replayText2PosX = 30;
+            resolution.replayText2PosY = 127;
+        }
+
         this.cameras.main.fadeIn(600);
 
-        screen = this.add.image(0, 0, 'end').setOrigin(0).setScale(3);
-        const finalScore = this.add.text(68, 30, `Score: $${score}`, {fontSize: '25px', fill: '#fff'});
-        const replayText1 = this.add.text(80, 190, `Press any key`, {fontSize: '20px', fill: '#fff'});
-        const replayText2 = this.add.text(80, 220, `to play again`, {fontSize: '20px', fill: '#fff'});
+        screen = this.add.image(0, 0, 'end').setOrigin(0).setScale(resolution.endImageScale);
+        const finalScore = this.add.text(resolution.finalScorePosX, resolution.finalScorePosY, `Score: $${score}`, { fontSize: resolution.finalScoreFontSize, fill: '#fff' });
+        const replayText1 = this.add.text(resolution.replayText1PosX, resolution.replayText1PosY, `Press any key`, { fontSize: resolution.replayTextFontSize, fill: '#fff' });
+        const replayText2 = this.add.text(resolution.replayText2PosX, resolution.replayText2PosY, `to play again`, { fontSize: resolution.replayTextFontSize, fill: '#fff' });
 
         //Blinking Text Class from https://www.stephengarside.co.uk/blog/phaser-3-flashing-text-easy-example/
         class TweenHelper {
@@ -63,7 +86,7 @@ class EndScene extends Phaser.Scene {
         // Resets score, money multiplier and speed for next round
         score = 0;
         moneyMultiplier = 100;
-        speed = .4;
+        screen.width >= 596 ? speed = .4 : speed = .26;
 
         // Reset object positions
         gameState.numCoordinates = {};
