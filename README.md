@@ -26,6 +26,7 @@ GIF to Spriteshhet conversion was done using https://ezgif.com/gif-to-sprite/ezg
 Url exists DONE
 Test Manual button works DONE
 Check if game functions as expected
+A video of the tests being carried out can be viewed (here)[https://github.com/RichardByrne95/CI-MS2-Mintedo-PLAYCHILD/blob/main/cypress/videos/gameSpec.js.mp4]
 
 ##Usability
 Images display correctly + contain alt tag DONE
