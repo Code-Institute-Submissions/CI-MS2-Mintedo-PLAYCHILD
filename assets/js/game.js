@@ -1,6 +1,16 @@
+let resolution = {};
+
+if (screen.width >= 577) {
+    resolution.height = 288;
+    resolution.width =315;
+} else if (screen.width <= 576) {
+    resolution.height = 162;
+    resolution.width = 178;    
+}
+
 const config = {
-    height: 288,
-    width: 315,
+    height: resolution.height,
+    width: resolution.width,
     resolution: window.devicePixelRatio,
     type: Phaser.WEBGL.AUTO,
     parent: 'game-scene',

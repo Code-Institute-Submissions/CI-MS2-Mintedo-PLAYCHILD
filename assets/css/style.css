@@ -221,9 +221,28 @@ svg {
 }
 
 /* -------------------------------------------------Media Queries */
+@media screen and (max-width: 1238px) {
+    #console {
+        margin-top: 30rem;
+    }
+
+
+    .modal-content {
+        width: 50%
+    }
+
+    .btn {
+        margin-top: 1.5rem;
+        top: 2rem;
+        left: 50vw;
+        transform: translateX(-50%);
+    }
+}
+
 @media screen and (max-width: 992px) {
     .container {
         height: 1vh;
+        margin-top: 19.5vh;
     }
     
     .btn {
@@ -252,10 +271,29 @@ svg {
     }
     
     #console {
-        margin-top: 8rem;
+        margin-top: 10rem;
     }
 
     svg {
         position: absolute;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .container {
+        margin-top: 0rem;
+    }
+    
+    #console {
+        margin-top: 10rem;
+    }
+
+    svg {
+        transform: scale(.96);
+        margin-top: 0;
+    }
+
+    #game-scene {
+        margin: 2.45rem 0 0 .6rem;
     }
 }
