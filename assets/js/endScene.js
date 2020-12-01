@@ -5,6 +5,7 @@ class EndScene extends Phaser.Scene {
 
     preload() {
         this.load.image('end', 'assets/images/end-image.png');
+        this.load.audio('startSound', ['assets/sound/start-game.ogg']);
     }
 
     create() {
@@ -32,9 +33,10 @@ class EndScene extends Phaser.Scene {
             resolution.replayText2PosY = 127;
         }
 
+        const startGameSound = this.sound.add('startSound');
         this.cameras.main.fadeIn(600);
 
-        screen = this.add.image(0, 0, 'end').setOrigin(0).setScale(resolution.endImageScale);
+        const theEnd = this.add.image(0, 0, 'end').setOrigin(0).setScale(resolution.endImageScale);
         const finalScore = this.add.text(resolution.finalScorePosX, resolution.finalScorePosY, `Score: $${score}`, { fontSize: resolution.finalScoreFontSize, fill: '#fff' });
         const replayText1 = this.add.text(resolution.replayText1PosX, resolution.replayText1PosY, `Press any key`, { fontSize: resolution.replayTextFontSize, fill: '#fff' });
         const replayText2 = this.add.text(resolution.replayText2PosX, resolution.replayText2PosY, `to play again`, { fontSize: resolution.replayTextFontSize, fill: '#fff' });
@@ -94,6 +96,7 @@ class EndScene extends Phaser.Scene {
 
         this.input.keyboard.on('keydown', () => {
             this.scene.stop('EndScene');
+            startGameSound.play();
             this.scene.start('GameScene');
         });
     }
