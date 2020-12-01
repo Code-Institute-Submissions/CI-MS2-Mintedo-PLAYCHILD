@@ -20,3 +20,19 @@ player_death sound was sourced from https://freesound.org/people/jeckkech/sounds
 collectcoin sound was sourced from https://freesound.org/people/bradwesson/sounds/135936/
 MP3/WAV to OGG conversion was done using https://www.online-convert.com/
 GIF to Spriteshhet conversion was done using https://ezgif.com/gif-to-sprite/ezgif-6-80133e6bc143.gif
+
+#Tests - reference https://www.guru99.com/web-application-testing.html
+##Functionality
+Url exists DONE
+Test Manual button works DONE
+Check if game functions as expected
+
+##Usability
+Images display correctly + contain alt tag DONE
+
+##Interface
+Check if canvas has correct size DONE
+
+##Performance
+Use lighthouse in Chrome Dev tools to check for common performance, accessibility and SEO issues, as well as for best practices. Accessibility was the only category to not get 100/100, due to the use of 'user-scalable="no"' to stop users from accidentally zooming in on mobile.
+Use Google Structurexd Data Testing Tool - (results)[https://search.google.com/structured-data/testing-tool/u/0/#url=https%3A%2F%2Frichardbyrne95.github.io%2FCI-MS2-Mintedo-PLAYCHILD%2F]
