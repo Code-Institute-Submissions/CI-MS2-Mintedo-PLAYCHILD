@@ -10,7 +10,7 @@ function checkDownKey(e) {
     }
 }
 
-//Checks qhich key is being released
+//Checks which key is being released
 function checkUpKey(e) {
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
         resetDPad(e.key);
