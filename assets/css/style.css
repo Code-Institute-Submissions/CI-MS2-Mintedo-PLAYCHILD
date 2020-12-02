@@ -297,3 +297,23 @@ svg {
         margin: 2.45rem 0 0 .6rem;
     }
 }
+
+@media screen and (max-width: 375px) {
+    .container {
+        margin-top: -5rem;
+    }
+
+    .btn {
+        top: -.5rem;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .container {
+        margin-top: -5rem;
+    }
+    
+    body {
+        overflow: hidden;
+    }
+}
