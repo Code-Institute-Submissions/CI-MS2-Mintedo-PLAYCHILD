@@ -32,9 +32,9 @@ context('Mintedo PLAYCHILD', () => {
             cy.viewport(1920, 1080).reload();
         })
 
-        it('should check if SVG has alt tag', () => {
+        it('should check if SVG has aria-label attribute', () => {
             cy.get('svg')
-                .should('have.attr', 'alt');
+                .should('have.attr', 'aria-label');
         })
     })
 
