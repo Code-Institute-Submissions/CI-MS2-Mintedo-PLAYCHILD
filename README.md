@@ -19,7 +19,7 @@ Developer High-score: $11,944
         2. As a first time visitor, I want to play the game and judge its suitability for my own entertainment purposes.
         3. As a first time visitor, I want to be able to easily understand how to control the game.
 
--    ### Design
+-   ### Design
 
     -   This project was intended to pay homage to era in which the Nintendo GAMEBOY was popular. This was achieved by placing the game scene within a interactive image of a GAMEBOY. 
 
