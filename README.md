@@ -1,6 +1,6 @@
-<h1 align="center">Mintendo GameChild</h1>
+<h1 align="center">Mintendo PlayChild</h1>
 
-<h2><img src="https://github.com/RichardByrne95/CI-MS2-Mintedo-PLAYCHILD/blob/main/assets/images/console.PNG?raw=true" width="150" height="350"></h2>
+<h2 align="center"><img src="https://github.com/RichardByrne95/CI-MS2-Mintedo-PLAYCHILD/blob/main/assets/images/console.PNG?raw=true" width="200" height="350"></h2>
 
 [View live project here.](https://richardbyrne95.github.io/CI-MS2-Mintedo-PLAYCHILD/)
 
@@ -193,7 +193,7 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
     This project was developed using Visual Studio Code, Phaser Game Engine, Git and GitHub using the following steps:
 
     1.  Logged into Github Desktop App
-    2.  A new repository called 'CI-MS2-Mintendo-GAMECHILD' was created locally for this project.
+    2.  A new repository called 'CI-MS2-Mintendo-PLAYCHILD' was created locally for this project.
     3.  This repsoitory was initalised with a blank README.md file.
     4.  This repository was then published from Github Desktop to the remote Github server using 'Ctrl + P'.
     5.  The project folder was opened in Visual Studio Code where the initial files were created.
