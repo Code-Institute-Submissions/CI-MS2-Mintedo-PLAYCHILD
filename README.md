@@ -1,8 +1,12 @@
 <h1 align="center">Mintendo GameChild</h1>
 
+<h2><img src="https://github.com/RichardByrne95/CI-MS2-Mintedo-PLAYCHILD/blob/main/assets/images/console.PNG?raw=true" width="150" height="350"></h2>
+
 [View live project here.](https://richardbyrne95.github.io/CI-MS2-Mintedo-PLAYCHILD/)
 
-This web-app is a browser-based single-player endless arcade game, based on the Phaser Game Engine. It simulates the original gameboy, insofar as the game scenes are viewed within an image of a Nintendo GAMEBOY. The game design, sound design and art are also reminiscent of the era in which the GAMEBOY was popular (albeit the original gameboy didn't display colour). This is not intended to emulate any GAMEBOY games, nor to fully replicate any of the GAMEBOY experience. It instead is a proof of concept and a homage to that era of gaming.
+This web-app is a browser-based single-player endless arcade game, based on the Phaser Game Engine.
+
+It simulates the original gameboy, insofar as the game scenes are viewed within an image of a Nintendo GAMEBOY. The game design, sound design and art are also reminiscent of the era in which the GAMEBOY was popular (albeit the original gameboy didn't display colour). This is not intended to emulate any GAMEBOY games, nor to fully replicate any of the GAMEBOY experience. It instead is a proof of concept and a homage to that era of gaming.
 
 Since browser games have [all but been replaced by games downloaded from app stores](https://www.mobilemarketer.com/news/mobile-games-sparked-60-of-2019-global-game-revenue-study-finds/569658/), this web-app was intentionally developed desktop-first and adapted to mobile.
 
@@ -125,7 +129,7 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
         1. As a first time visitor, I want to learn about the purpose of the site and learn more about the web-app.
 
-            <h2><img src=""></h2>
+            <h2><img src="https://github.com/RichardByrne95/CI-MS2-Mintedo-PLAYCHILD/blob/main/assets/images/start-screen.PNG?raw=true" width="400" height="300"></h2>
 
             - Upon visiting the web-app, the user is instantly greeted with a an large image of a GAMEBOY, a 'Controls' button and a game scene that starts up after a delay (to simulate the time it takes to turn on a GAMEBOY).
 
@@ -133,9 +137,13 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
         2. As a first time visitor, I want to play the game and judge its suitability for my own entertainment purposes.
 
+            <h2><img src="https://github.com/RichardByrne95/CI-MS2-Mintedo-PLAYCHILD/blob/main/assets/images/game-screen.PNG?raw=true" width="200" height="200"></h2>
+
             -   The game begins very quickly allowing the user to promptly gauge their interest in the game.
 
         3. As a first time visitor, I want to be able to easily understand how to control the game.
+
+            <h2><img src="https://github.com/RichardByrne95/CI-MS2-Mintedo-PLAYCHILD/blob/main/assets/images/control-button.PNG?raw=true" width="100" height="30"></h2>
 
             -   The 'Controls' button displays a modal showing the controls of the game. This combined with the simple controls allow the user to quickly gain an understanding of how to interact with the game.
 
