@@ -4,9 +4,9 @@
 
 [View live project here.](https://richardbyrne95.github.io/CI-MS2-Mintedo-PLAYCHILD/)
 
-This web-app is a browser-based single-player endless arcade game, based on the Phaser Game Engine.
+This web-app is a browser-based single-player endless arcade game, based on the Phaser Game Engine. A game was chosen as the focus for this project as it was found that many of my peers were developing very similar apps to each other (Google Maps APIs etc.). I have also had an interest in game development for a number of years now, which made the project choice for this module quite easy.
 
-It simulates the original gameboy, insofar as the game scenes are viewed within an image of a Nintendo GAMEBOY. The game design, sound design and art are also reminiscent of the era in which the GAMEBOY was popular (albeit the original gameboy didn't display colour). This is not intended to emulate any GAMEBOY games, nor to fully replicate any of the GAMEBOY experience. It instead is a proof of concept and a homage to that era of gaming.
+This webapp simulates the original gameboy, insofar as the game scenes are viewed within an image of a Nintendo GAMEBOY. The game design, sound design and art are also reminiscent of the era in which the GAMEBOY was popular (albeit the original gameboy didn't display colour). This is not intended to emulate any GAMEBOY games, nor to fully replicate any of the GAMEBOY experience. It instead is a proof of concept and a homage to that era of gaming.
 
 Since browser games have [all but been replaced by games downloaded from app stores](https://www.mobilemarketer.com/news/mobile-games-sparked-60-of-2019-global-game-revenue-study-finds/569658/), this web-app was intentionally developed desktop-first and adapted to mobile.
 
@@ -185,10 +185,120 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
     - Touch input is not yet available to control the player (e.g. mobile devices). Desktop playability was prioritised but touch support is included in the roadmap.
     - The spawning system can spawn enemies and coins very close to each other, making the game unplayable from that point onwards.
+    - It was found during development (through much strife) that the Evernote for Chrome plugin causes issues with player input with Phaser games. It cannot be installed on Chrome if the user wishes to play the game. Using Incognito mode or another brower is a quick workaround.
+
+## Development
+
+- ### Setting Up the Project
+
+  1. A new index.html file was created and boilerplate HTML code was added.
+  2. JavaScript files were created for each of the game scenes, as well as for the game initialisation settings, 'game.js'.
+  3. A 'helper.js' file was created to handle the animation of the SVG and of the modal.
+  4. A custom CSS style sheet was added to the project.
+  5. The Phaser and jQuery libraries were imported using links from CDNs.
+  6. The relative Google Font stylesheet was imported.
+  7. Two divs were added, one for the console image, another for the game scene that Phaser produces.
+  8. Within [Figma](https://www.figma.com/), the Gameboy image was imported, and the different parts of the SVG were grouped together for animating later.
+  9. The SVG was exported from Figma with all of the created groups as id attributes, and was then imported into the project folder.
+  10. The SVG was opened in VS Code and the code was copied and pasted into the console div within the index.html file.
+  11. All other assets were imported (see Credits for sources).
+
+- ### Animating the SVG
+
+The intention of animating the SVG was to have the buttons respond to user input.
+
+1. The image was processed in [Figma](https://www.figma.com/) as above and imported into the project.
+2. A function was created (checkDownKey()) to check which key was being pressed and call the relevant animation function.
+3. A function was created (checkUpKey()) to check which key was being released and call the relevant animation reset function.
+4. The D-Pad was animated by ckecking the relevant arrow key, using jQuery to select the relevant axis of the D-Pad, and adding a custom CSS class that translates the the entire D-Pad element in the direction of the arrow key pressed. This gives the illusion of the D-Pad being 3D. When the arrow key is released, the resetDPEAD() function is called to re-center the position of the D-Pad.
+5. The A and B buttons were animated by ckecking for either an 'a' or 'b' key press, using jQuery to select the top and side of the relevant button, and adding a custom CSS class that translates the top of button left, covering the side of the button, giving the illusion that the button has been physically pressed.
+6. The Start and Select buttons were animated by ckecking for either an 'Enter' or 'Spacebar' key press, using jQuery to select the relevant button, and adding a custom CSS class that scales the button down in size, giving the illusion that the button has been physically pressed.
+
+- ### Developing with Phaser
+
+This project was developed using the [Phaser HTML Game Engine](http://phaser.io/) using the following steps:
+
+- #### Learning Phaser
+
+  - Phaser was learned by referencing the documentation on the official Phaser website.
+
+- #### Initailising the Game
+
+  1. In order to initialise the game scene, a config object was created within 'game.js', which was then passed into the createGame() function.
+  2. A timeout was set on the create game function to simulate the time it takes to turn on a GAMEBOY.
+  3. A resolution object was created and updated based on the screen size of the user. This allowed the game scenes to adjust to the user's choice of display.
+  4. Inside the config object:
+
+  - The type was set to WEBGL.AUTO so that the engine would use the WEBGL render if available by the browser.
+  - The parent was set to the id of the 'game-scene' div so that the game screen would be able to be controlled separately from the SVG.
+  - The scene was set to a list of all the scenes in the game.
+
+- #### Setting up startScene.js
+
+  1. A new class called StartScene was created which extended the Phaser.Scene boilerplate.
+  2. The standard preload() and create() functions were created. update() was not created as no in game asset in this scene needed to be updated on a framr-by-frame basis.
+  3. The audio assets were added into the preload() function, for use later on.
+  4. A resolution object was again initialised and a positon and size of each element was given based on the screen size of the user.
+  5. The GAMEBOY startup sound was called and played when the console 'starts up'.
+  6. Text was added to give infomation to the user about the game and to prompt them to start.
+  7. A blinking text class was added to the start game prompt.
+  8. Lastly a function was created to check for the 'Enter' key to be pressed, upon which the current scene would end, the GameScene would start, and the game would begin.
+
+- #### Setting up gameScene.js
+
+  - ##### General
+
+    1. A new class called GameScene was created which extended the Phaser.Scene boilerplate.
+    2. The standard preload(), create(), and update() functions were created within the class.
+    3. A score variable was initialised outside of the class to keep track of the user's score.
+    4. A moneyMultiplier variable was initialised to keep track of the score multiplier.
+    5. A speed variable was declared to keep track of the player's speed multiplier.
+    6. A ternary operator statement was used to change the base speed of the player based on the resolution of their display.
+    7. A randomCoord variable was declared to hold the coordinates every time random coordinates were created.
+    8. A gameState object was created to hold the coordinated of all the game object within the game scene.
+
+  - ##### Preload
+
+    1. Back within the GameScene class, all relevant assets (audio, spritesheets, images) were loaded in via the preload() function.
+
+  - ##### Create
+
+    1. A resolution object was again initialised and a positon and size of each element was given based on the screen size of the user.
+    2. The background image was set using 'this.add.image()'.
+    3. The setScale() method was used to scale the background image to conver the entire screen.
+    4. The setSize() method was used to set the height and width of the background.
+    5. The score text was created using 'this.add.text()'.
+    6. The player object was created inside the gameState object using 'this.physics.add.sprite()'.
+    7. Collision with the player was set using the '.setCollideWorldBounds(true)' and '.body.collideWorldBounds = true' methods.
+    8. Animations were created by splitting the original player gif into spritesheets using [EZGif](<(https://ezgif.com/gif-to-sprite/ezgif-6-80133e6bc143.gif)>).
+    9. Any paused animations were resumed using 'this.Anims.resume'.
+    10. The player idle and movement animations were created using multiple 'this.anims.create' methods.
+    11. The player's idle animation was set so that the player shows movement before player input.
+    12. Gems were placed in random spots by calling the assignCoords() function, which generates random coordinated that are at least 75px away from the player's current position, and applying the coordinates to a new gem game object.
+    13. Upon collecting a gem, a new snake game object is created using the same method to create a gem, but also adds an animation to the snake.
+    14. Collision detection was set up so as the player could 'collect' the gems by disabling the body of the gem within the scene and deleting its coordinates from the gameState object.
+    15. A sound was when the player 'collects' a gem.
+    16. A function to increment the player's score upon collection of a gem was created. It also slowly increases the speed of the player at $1000 intervals and increases the moneyMultiplier.
+    17. Music was added to the game using 'this.sound.add()', looped using the '.setLoop' method and played using the '.play' method.
+
+  - ##### Update
+
+    1. Variables were added to hold the pressed status of the arrow keys.
+    2. An if statement was used to call player movement functions based on the key that was pressed.
+    3. And endGame() function was created that pasues all obeject movement, fades, the camera to black, plays a player death sound, ends the current scene and starts the EndScene.
+
+- #### Creating endscene.js
+
+  1. A new class called EndScene was created which extended the Phaser.Scene boilerplate.
+  2. A resolution object was again initialised and a positon and size of each element was given based on the screen size of the user.
+  3. The sounds, text, and images were added using the same methods as described above.
+  4. The score and multipliers are reset by reassigning the variable values.
+  5. The gameState object is reset to avoid any crossover between object placement from the previous game.
+  6. The player is prompted to play again by pressing again key.
 
 ## Deployment
 
-- ### Development Process
+- ### Source Control Process
 
   This project was developed using Visual Studio Code, Phaser Game Engine, Git and GitHub using the following steps:
 
